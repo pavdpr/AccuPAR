@@ -18,7 +18,7 @@ function D = AccuPAR_SolarDeclination( JulianDay )
 %
 
 % equation 31
-D = asin( 0.3987 .* sin( 4.869 + 0.0172 .* JulianDay ) + ...
+D = asin( 0.39785 .* sin( 4.869 + 0.0172 .* JulianDay ) + ...
     0.03345 .* sin( 6.224 + 0.0172 .* JulianDay ) );
 
 end
