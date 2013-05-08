@@ -16,6 +16,9 @@ function D = AccuPAR_SolarDeclination( JulianDay )
 % REFERENCES:
 %   http://www.decagon.com/assets/Manuals/AccuPAR-LP-80.pdf
 %
+% NOTES:
+%   The values differ slightly from table 4. This is probably due to
+%       numerial rounding issues.
 
 % equation 31
 D = asin( 0.39785 .* sin( 4.869 + 0.0172 .* JulianDay ) + ...
