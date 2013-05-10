@@ -1,4 +1,4 @@
-function julianDay = AccuPAR_JulianDate( dateString )
+function [ JulianDay, year ] = AccuPAR_JulianDate( dateString )
 %ACCUPAR_JULIANDATE Converts a date string into a Julian Day
 %
 % DETAILED DESCRIPTION:
@@ -36,7 +36,7 @@ else
     monthStart = [ 0 31 60 91 121 152 182 213 244 274 305 335 ];
 end
 
-julianDay = monthStart( month ) + day;
+JulianDay = monthStart( month ) + day;
 
 end
 

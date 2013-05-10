@@ -1,4 +1,4 @@
-function [ julianDay, t ] = AccuPAR_DateTime( dateTimeString, isDST )
+function [ julianDay, t, year ] = AccuPAR_DateTime( dateTimeString, isDST )
 %ACCUPAR_DATETIMECONVERT Parses an AccuPAR date/time string
 %
 % DETAILED DESCRIPTION:
@@ -14,9 +14,12 @@ function [ julianDay, t ] = AccuPAR_DateTime( dateTimeString, isDST )
 % OUTPUTS:
 %   t: the time in hours. The values are in the range [0.0,24.0).
 %   julianDay: the Julian Day
+%   year: the year
 %
 % HISTORY:
 %   2013-05-08: Written by Paul Romanczyk (par4249 at rit dot edu)
+%   2013-05-09: Added year output
+%               Added check that input is a cell array.
 % 
 % REFERENCES:
 %   http://www.decagon.com/assets/Manuals/AccuPAR-LP-80.pdf
@@ -25,6 +28,12 @@ function [ julianDay, t ] = AccuPAR_DateTime( dateTimeString, isDST )
     if nargin < 2
         isDST = false;
     end
+    
+    % if needed take teh dateTimeString out of its cell
+    while iscell( dateTimeString )
+        dateTimeString = dateTimeString{ 1 };
+    end
+    
     
     idx1 = strfind( dateTimeString, ' ' );
     idx2 = strfind( dateTimeString, '/' );
@@ -99,6 +108,7 @@ function [ julianDay, t ] = AccuPAR_DateTime( dateTimeString, isDST )
             julianDay = julianDay - 1;
             % check if we are at the boundary of a year
             if julianDay < 1
+                year = year - 1;
                 if isLeapYear( year - 1 )
                     julianDay = 366;
                 else
