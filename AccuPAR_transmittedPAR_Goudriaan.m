@@ -1,4 +1,4 @@
-function tau = AccuPAR_transmittedPAR_Goudriaan( fb, a )
+function tau = AccuPAR_TransmittedPAR_Goudriaan( fb, a )
 %ACCUPAR_TRANSMITTEDPAR_GOUDRIAAN computes fraction of transmitted PAR
 %according to Goudriaan (1988)
 %

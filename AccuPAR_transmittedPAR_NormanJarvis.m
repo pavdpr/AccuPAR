@@ -1,4 +1,4 @@
-function tau = AccuPAR_transmittedPAR_NormanJarvis( fb, L, K, a )
+function tau = AccuPAR_TransmittedPAR_NormanJarvis( fb, L, K, a )
 %ACCUPAR_TRANSMITTEDPAR_NORMANJARVIS Summary of this function goes here
 %
 % DETAILED DESCRIPTION:
