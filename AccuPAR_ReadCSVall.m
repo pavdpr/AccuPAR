@@ -1,10 +1,10 @@
-function data = AccuPAR_ReadCSVsummary( file, isDST )
-%ACCUPAR_READCSVSUMMARY Reads in an AccuPAR Summary CSV file
+function data = AccuPAR_ReadCSVall( file, isDST )
+%ACCUPAR_READCSVSUMMARY Reads in an AccuPAR All CSV file
 %
 % DETAILED DESCRIPTION:
-%   This function reads in an AccuPAR Summary CSV file. This must be
+%   This function reads in an AccuPAR All Data CSV file. This must be
 %       created by performing a "SAVE AS" csv in excel and choosing the
-%       "Summary Data" table.
+%       "All Data" table.
 %
 % INPUTS:
 %   file: A string containing the path to the data
@@ -13,7 +13,7 @@ function data = AccuPAR_ReadCSVsummary( file, isDST )
 % OUTPUTS:
 %   data: An array of structures containing the data.
 %   data( i ): the i th entry of the spreadsheet.
-%   data.type: the type of measurement. Will always be 'SUM' for this
+%   data.type: the type of measurement. Will always be 'summary' for this
 %       function
 %   data.JulianDay: The Julian Day.
 %   data.t: The time in hours, corrected for daylight savings.
@@ -31,7 +31,7 @@ function data = AccuPAR_ReadCSVsummary( file, isDST )
 %   data.longitude: the longitude (degrees)
 %
 % HISTORY:
-%   2013-05-09: Written by Paul Romanczyk (par4249 at rit dot edu)
+%   2013-05-10: Written by Paul Romanczyk (par4249 at rit dot edu)
 % 
 % REFERENCES:
 %   http://www.decagon.com/assets/Manuals/AccuPAR-LP-80.pdf
@@ -47,7 +47,7 @@ if nargin < 2
 end
 
 fid = fopen( file, 'r' );
-tmp = textscan( fid, '%s%s%s%f%f%f%f%f%f%s%s%s', ...
+tmp = textscan( fid, '%s%s%s%f%f%f%f%f%f%s%s%s%f%f%f%f%f%f%f%f%f%d%d', ...
     'Delimiter', ',', ...
     'HeaderLines', 1 );
 
@@ -105,6 +105,25 @@ for i = 1:n
     % copy the longitude (also remove the ¡ that excel puts in when
     %   converting to a csv).
     data( i ).longitude = str2double( longitude{ i }( 1:end-1 ) );
+    
+    % copy the segment PAR values
+    data( i ).seg1par = tmp{ 13 }( i );
+    data( i ).seg2par = tmp{ 14 }( i );
+    data( i ).seg3par = tmp{ 15 }( i );
+    data( i ).seg4par = tmp{ 16 }( i );
+    data( i ).seg5par = tmp{ 17 }( i );
+    data( i ).seg6par = tmp{ 18 }( i );
+    data( i ).seg7par = tmp{ 19 }( i );
+    data( i ).seg8par = tmp{ 20 }( i );
+    
+    % copy the external sensor PAR
+    data( i ).extpar = tmp{ 21 }( i );
+    
+    % copy the record ID
+    data( i ).recordID = tmp{ 22 }( i );
+    
+    % copy the raw record ID
+    data( i ).rawRecordID = tmp{ 23 }( i );
 end
 
 end

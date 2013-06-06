@@ -42,6 +42,7 @@ function [ output, idx ] = AccuPAR_TemporalSubset( data, timeRange, isDST )
 %
 % REFERENCES:
 %   http://www.decagon.com/assets/Manuals/AccuPAR-LP-80.pdf
+%
 
 while iscell( timeRange )
     startOrDate = startOrDate{ 1 };
