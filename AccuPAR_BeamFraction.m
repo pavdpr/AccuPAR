@@ -59,7 +59,7 @@ end
 % convert to radians
 zenith = zenith .* ( pi / 180.0 );
 
-r = PAR ./ ( 2550.0 .* cos( zenith ) ); 
+r = par ./ ( 2550.0 .* cos( zenith ) ); 
 % 600 w/m2 * 4.25 umol/w/m2 (.235 MJ/mol)(600 is potential PAR)
 r( r > 0.82 ) = 0.82;
 r( r < 0.2 ) = 0.2;

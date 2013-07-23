@@ -12,7 +12,10 @@ function [ output, idx ] = AccuPAR_FindClosestSample( data, time, isDST, method 
 %   data.JulianDay: The Julian Day.
 %   data.t: The time in hours, corrected for daylight savings.
 %   data.year: the year
-%   time: a string contianing the time to use. e.g. '5/9/2013 4:30:00 PM'
+%   time: the specified time. It could be in following format:
+%       + a string contianing the time to use. e.g. '5/9/2013 4:30:00 PM'
+%       + a structure with fields J (for the Julian Day), T, (for the time
+%         in hours), Y (for the year).
 %   isDST: (optional) a bool that is true if time is in DST. this does not
 %       affect the times in data.
 %   method: (optional) a string telling the function how to get find the
@@ -29,6 +32,8 @@ function [ output, idx ] = AccuPAR_FindClosestSample( data, time, isDST, method 
 %
 % HISTORY:
 %   2013-05-10: Written by Paul Romanczyk (par4249 at rit dot edu)
+%   2013-07-23: Modified by Wei Yao (wxy3806 ...)
+%               time can be passed in by JTY format in a struct
 % 
 % NOTES:
 %   Note that if no time satifies the conditions of 'earlier' or 'later',
@@ -47,8 +52,17 @@ if nargin < 4
 end
 
 % compute the time to a numeric value
-[ J, T, Y ] = AccuPAR_DateTime( time, isDST );
+if isa(time, 'char')
+    [ J, T, Y ] = AccuPAR_DateTime( time, isDST );
+elseif isa(time, 'struct')
+    J = time.J;
+    T = time.T;
+    Y = time.Y;
+else
+    error('The type of input time is unknown!');
+end
 t = ( Y + ( J + T / 24.0 ) / 366.0 ) .* ones( size( data ) );
+    
 
 n = numel( data );
 

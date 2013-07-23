@@ -13,6 +13,9 @@ function LC = AccuPAR_LongitudeCorrection( longitude, standardMeridian )
 %
 % HISTORY:
 %   2013-05-08: Written by Paul Romanczyk (par4249 at rit dot edu)
+%   2013-07-23: Modified by Wei Yao (wxy3806 ...)
+%               Correct the Longitude correction( western longitude is 
+%               negitive)
 % 
 % REFERENCES:
 %   http://www.decagon.com/assets/Manuals/AccuPAR-LP-80.pdf
@@ -43,7 +46,7 @@ end
 
 % the Longitude correction is +1/15 hr for every degree east of a standard
 % meridian
-LC = ( standardMeridian - longitude ) ./ 15.0;
+LC = -( standardMeridian - longitude ) ./ 15.0;
 
 end
 
