@@ -26,6 +26,10 @@ function [ output, idx ] = AccuPAR_TemporalSubset( data, timeRange, isDST )
 %           '5/8/2013 11:28:23 AM-5/9/2013' or 
 %           '5/8/2013-5/9/2013 4:42:17 PM': This will return all entries of 
 %           data in the time ranges.
+%       + All points before a time (either mixed date/time or date only)
+%           '-5/8/2013 11:28:23 AM' or '-5/8/2013' 
+%       + All points after a time (either mixed date/time or date only)
+%           '5/8/2013 11:28:23 AM-' or '5/8/2013-'
 %   isDST: (optional) a bool that is true if the time(s) in timeRange is
 %       (are) in Daylight Savings time
 %
@@ -36,6 +40,8 @@ function [ output, idx ] = AccuPAR_TemporalSubset( data, timeRange, isDST )
 %
 % HISTORY:
 %   2013-05-10: Written by Paul Romanczyk (par4249 at rit dot edu)
+%   2013-07-23: Modified by Paul Romanczyk
+%       Added the ability to do one sided ranges
 % 
 % NOTES:
 %   Time Ranges are inclusive of the entered values.
@@ -66,12 +72,22 @@ if numel( idx ) == 0
     return;
 elseif numel( idx ) == 1
     % we are looking for a range
-    startString = timeRange( 1:idx - 1 );
-    stopString = timeRange( idx + 1:end );
-    
-    t1 = parseTime( startString, isDST );
-    t2 = parseTime( stopString, isDST, true );
-    
+    if idx == 1
+        % We are looking for all points before the given time
+        t1 = -inf;
+        t2 = parseTime( timeRange( 2:end ), isDST, true );
+    elseif idx == numel( timeRange )
+        % We are looking for all points after the given time
+        t1 = parseTime( timeRange( 1:end - 1 ), isDST, true );
+        t2 = inf;
+    else
+        % both beginning and end have been defined
+        startString = timeRange( 1:idx - 1 );
+        stopString = timeRange( idx + 1:end );
+
+        t1 = parseTime( startString, isDST );
+        t2 = parseTime( stopString, isDST, true );
+    end
     T = zeros( size(  data ) );
     for i = 1:numel( T )
         T( i ) = data( i ).year + ...

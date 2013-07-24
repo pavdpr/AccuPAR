@@ -15,6 +15,8 @@ function Fb = AccuPAR_BeamFraction( zenith, par )
 %
 % HISTORY:
 %   2013-05-06: Written by Paul Romanczyk (par4249 at rit dot edu)
+%   2013-07-23: Bug Fix by Wei Yao
+%               'par' not 'PAR'
 % 
 % REFERENCES:
 %   http://www.decagon.com/assets/Manuals/AccuPAR-LP-80.pdf

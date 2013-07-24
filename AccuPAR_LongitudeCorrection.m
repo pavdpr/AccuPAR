@@ -5,7 +5,7 @@ function LC = AccuPAR_LongitudeCorrection( longitude, standardMeridian )
 %   This function computes the solar noon correction based on longitude.
 %
 % INPUTS:
-%   longitude: The longitude in degrees. Longitudes in the eastern 
+%   longitude: The longitude in degrees. Longitudes in the western 
 %       hemisphere are negative.
 %
 % OUTPUTS:
@@ -14,8 +14,9 @@ function LC = AccuPAR_LongitudeCorrection( longitude, standardMeridian )
 % HISTORY:
 %   2013-05-08: Written by Paul Romanczyk (par4249 at rit dot edu)
 %   2013-07-23: Modified by Wei Yao (wxy3806 ...)
-%               Correct the Longitude correction( western longitude is 
-%               negitive)
+%   	Corrected the longitude correction (western longitude is negative)
+%   2013-07-23: Modified by Paul Romanczyk
+%       Fixed documentation
 % 
 % REFERENCES:
 %   http://www.decagon.com/assets/Manuals/AccuPAR-LP-80.pdf
