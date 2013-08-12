@@ -42,6 +42,8 @@ function [ output, idx ] = AccuPAR_TemporalSubset( data, timeRange, isDST )
 %   2013-05-10: Written by Paul Romanczyk (par4249 at rit dot edu)
 %   2013-07-23: Modified by Paul Romanczyk
 %       Added the ability to do one sided ranges
+%   2013-08-12: Modified by Wei Yao (wxy3806 at ...)
+%       Fixed a bug in calculating "t" when endOfDay is true
 % 
 % NOTES:
 %   Time Ranges are inclusive of the entered values.
@@ -125,7 +127,8 @@ function t = parseTime( timeString, isDST, endOfDay )
         if endOfDay
             % if this is an end of day measurement, add 23 hrs 59 min and
             %   59 sec to the time
-            t = t + ( 23.0 + ( 59.0 + ( 59.0 / 60.0 ) ) / 60.0 ) / 366.0;
+            t = t + ( 23.0 + ( 59.0 + ( 59.0 / 60.0 ) ) / 60.0 ) / 24.0 ...
+                / 366.0;
         end
     else
         error( 'AccuPAR_TemporalSubset:parseTime:InvalidTimeString', ... 
