@@ -20,6 +20,10 @@ function LAI = AccuPAR_ComputeLAI( K, fb, tau, a )
 %
 % HISTORY:
 %   2013-05-08: Written by Paul Romanczyk (par4249 at rit dot edu)
+%   2013-09-20: Added RIT Copyright
+%
+% COPYRIGHT:
+%   (C) 2013 Rochester Institute of Technology
 % 
 % REFERENCES:
 %   http://www.decagon.com/assets/Manuals/AccuPAR-LP-80.pdf

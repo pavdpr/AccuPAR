@@ -1,8 +1,11 @@
-# LaTex stuff
+# Test files
 *.xls
 *.csv
+
+# Mac Things
 .DS_Store
 
-
+# Matlab Backups
+*.m~
 
 

@@ -23,6 +23,10 @@ function t0 = AccuPAR_SolarNoon( ET, LC )
 %           naive or informed meridians.
 %       + Inputs are now the Longitude and Equation of Time corrections,
 %       which are computed externally.
+%   2013-09-20: Added RIT Copyright
+%
+% COPYRIGHT:
+%   (C) 2013 Rochester Institute of Technology
 % 
 % REFERENCES:
 %   http://www.decagon.com/assets/Manuals/AccuPAR-LP-80.pdf

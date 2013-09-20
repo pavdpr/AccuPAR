@@ -34,6 +34,10 @@ function [ output, idx ] = AccuPAR_FindClosestSample( data, time, isDST, method 
 %   2013-05-10: Written by Paul Romanczyk (par4249 at rit dot edu)
 %   2013-07-23: Modified by Wei Yao (wxy3806 ...)
 %               time can be passed in by JTY format in a struct
+%   2013-09-20: Added RIT Copyright
+%
+% COPYRIGHT:
+%   (C) 2013 Rochester Institute of Technology
 % 
 % NOTES:
 %   Note that if no time satifies the conditions of 'earlier' or 'later',

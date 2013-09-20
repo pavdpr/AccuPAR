@@ -44,9 +44,13 @@ function [ output, idx ] = AccuPAR_TemporalSubset( data, timeRange, isDST )
 %       Added the ability to do one sided ranges
 %   2013-08-12: Modified by Wei Yao (wxy3806 at ...)
 %       Fixed a bug in calculating "t" when endOfDay is true
+%   2013-09-20: Added RIT Copyright
 % 
 % NOTES:
 %   Time Ranges are inclusive of the entered values.
+%
+% COPYRIGHT:
+%   (C) 2013 Rochester Institute of Technology
 %
 % REFERENCES:
 %   http://www.decagon.com/assets/Manuals/AccuPAR-LP-80.pdf

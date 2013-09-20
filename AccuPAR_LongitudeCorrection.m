@@ -17,6 +17,10 @@ function LC = AccuPAR_LongitudeCorrection( longitude, standardMeridian )
 %   	Corrected the longitude correction (western longitude is negative)
 %   2013-07-23: Modified by Paul Romanczyk
 %       Fixed documentation
+%   2013-09-20: Added RIT Copyright
+%
+% COPYRIGHT:
+%   (C) 2013 Rochester Institute of Technology
 % 
 % REFERENCES:
 %   http://www.decagon.com/assets/Manuals/AccuPAR-LP-80.pdf
